@@ -36,7 +36,7 @@
 </script>
 
 <main>
-  <a href="/"><img src="https://uc25ea79b8c7e7022dafc49044ee.previews.dropboxusercontent.com/p/thumb/AB8nEmRdsGJGs2QPTJF3Up7rYkkLudbgN332uSblJ4J-pQ6NX8YaNgAHP0tGiT6EHbEeKEvz3ykX9szL2ZKo6p1kFU9FiNOuDgPfgIC7LHinTJONTk8PG3DgfYsMq5c0gP4glYheWm29tIR-nJ52EDIm6JTFFxIXqkvhSjml1L_r7Pn-p1Cw1Daw0vlWa7f6P3WwuNnu0kcpC3NYf5NMIwEY_MZN9hQsJpCA8goWSKliFR_TltRTyCcCrMVCjXk8q4kxE5_6wwNl8h_uubLv91XGmDt8OK47d5EF-OxtSp6Rno77XDaM4yzSMN2qcl_22TnJtJ3H81sLL-6lruV2AdVT/p.png" width="100" alt=""></a>
+  <a href="/"><img src="https://uc25ea79b8c7e7022dafc49044ee.previews.dropboxusercontent.com/p/thumb/AB-4Dsek6B67aqKV8Uioju5BUrr_CtzbCFKYv9q6IIosyrH9mqBWL1tpO3bzCEw9jUNcKiVX8AoKGqb_3FkzsmA58QBrANoWOQCwg5K-apObH82vZr3lFXoOd48TjbpUylVnWyeKMoX6iPHd6WZJtAurzKjjYa60ZSdiAgid9U3utbTy0N-JMh_-z4pkvEKEU2XJWYkPD43rPkRFulHRL7KQj4zdnNv6cX-xXym37PBnvr8jToqrcGMitK9N-TxBhjZI0epmJR77fRqKrpclTKPxhDTWUKzTfWeSpsQ-kvpYq8k26hNw4sqy-NTrdO9EFKyJaKd5Elvv8NVUkM_B5iJw/p.png" width="100" alt=""></a>
   <h3>Kick VOD Downloader</h3>
   <form on:submit={handleSubmit}> 
     <div class="input-group input-group-lg">

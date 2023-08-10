@@ -37,7 +37,7 @@
 
 <main>
   <a href="/"><img src="https://uc25ea79b8c7e7022dafc49044ee.previews.dropboxusercontent.com/p/thumb/AB-4Dsek6B67aqKV8Uioju5BUrr_CtzbCFKYv9q6IIosyrH9mqBWL1tpO3bzCEw9jUNcKiVX8AoKGqb_3FkzsmA58QBrANoWOQCwg5K-apObH82vZr3lFXoOd48TjbpUylVnWyeKMoX6iPHd6WZJtAurzKjjYa60ZSdiAgid9U3utbTy0N-JMh_-z4pkvEKEU2XJWYkPD43rPkRFulHRL7KQj4zdnNv6cX-xXym37PBnvr8jToqrcGMitK9N-TxBhjZI0epmJR77fRqKrpclTKPxhDTWUKzTfWeSpsQ-kvpYq8k26hNw4sqy-NTrdO9EFKyJaKd5Elvv8NVUkM_B5iJw/p.png" width="100" alt=""></a>
-  <h3>Kick VOD Downloader</h3>
+  <h3>Kick VOD M3U8</h3>
   <form on:submit={handleSubmit}> 
     <div class="input-group input-group-lg">
       <span class="input-group-text" id="inputGroup-sizing-lg">Url VOD</span>

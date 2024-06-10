@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import "bootstrap/dist/css/bootstrap.min.css";
+---
+<Layout title="Kick VOD M3U8.">
+	<main>
+		<div class="container" id="divForm">
+			<h1><span class="text-gradient">Kick</span> VOD M3U8</h1>
+			<form class="main" id="vodForm">
+				<div class="input-group">
+				<span class="input-group-text" id="inputGroup-sizing-lg">URL</span>
+				<input type="url" class="form-control" aria-label="Kick VOD Download" aria-describedby="Kick VOD Download" id="videoUrl" placeholder="Ingresa URL VOD Kick Aqui" required>
+				<button class="btn btn-light" type="submit">Obtener M3U8</button>
+			  </div>
+			</form>
+		</div>
+		<div id="resultContainer"></div>
+	</main>
+</Layout>
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	}
+
+	h1 {
+		font-size: 2rem;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+
+	.text-gradient {
+		background-color: #52FC11;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+
+	.form-control {
+		padding: 0.5rem 1rem;
+		border: 1px solid #ccc;
+		border-radius: 0.25rem;
+		width: 510px;
+	}
+
+	.btn-light {
+		margin-left: 5px;
+		background-color: #52fc11;
+		color: #000000;
+		border: none; 
+		border-radius: 0.5rem;
+		padding: 0.75rem 1.5rem; 
+		font-size: 1rem;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background-color 0.3s ease, transform 0.2s ease; 
+	}
+
+	.btn-light:hover {
+		background-color: #52aa77; 
+		transform: translateY(-2px);
+	}
+
+	.btn-light:active {
+		background-color: #486a9e;
+		transform: translateY(0);
+	}
+
+	.btn-light:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(107, 149, 211, 0.5);
+	}
+</style>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const form = document.getElementById('vodForm');
+		form.addEventListener('submit', searchVod);
+	});
+
+	const searchVod = async (event) => {
+		event.preventDefault();
+
+		let videoUrl = document.getElementById('videoUrl').value;
+		const apiUrl = convertToApiUrl(videoUrl);
+
+		try {
+			const response = await fetch(apiUrl);
+			const data = await response.json();
+			const source = data.source;
+			let result = `${source}`;
+			let title = data.livestream.session_title;
+			let img = data.livestream.thumbnail;
+			let channel = data.livestream.channel.user.username;
+			let followers = data.livestream.channel.followersCount;
+			let categoryName = data.livestream.categories[0].name;
+			
+			displayResult(result, title, img, channel, followers, categoryName);
+			
+		} catch (error) {
+			console.error(error);
+			let result = 'Error al obtener la fuente del video.';
+			displayResult(result, '', '', '', '', '');
+		}
+
+		const formDiv = document.getElementById('divForm');
+		formDiv.style.display = 'none';
+
+	}
+
+	const convertToApiUrl = (videoUrl) => {
+		const videoId = videoUrl.split('/').pop();
+		return `https://kick.com/api/v1/video/${videoId}`;
+	}
+
+	const displayResult = (result, title, img, channel, followers, categoryName) => {
+		const resultContainer = document.getElementById('resultContainer');
+		resultContainer.innerHTML = `
+			<div class="card">
+				${img ? `<img src="${img}" class="card-img-top" alt="${title}" loading="lazy" style="width: 100%;">` : ''}
+				<div class="card-body">
+					<h4 class="card-title">${title}</h4>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item"><a href="https://kick.com/${channel}" class="card-link" target="_blank">${channel}</a></li>
+					<li class="list-group-item">Followers: ${followers}</li>
+					<li class="list-group-item">Category: ${categoryName}</li>
+				</ul>
+				<div class="card-body">
+					<span class="input-group-text" id="inputGroup-sizing-lg">M3U8 URL</span>
+					<input id="result" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="${result}" readonly>
+					<button class="btn btn-success mt-5 text-center" type="button" onclick="window.location.href='/';">Volver al inicio</button>
+				</div>
+			</div>
+		`;
+	}
+</script>
